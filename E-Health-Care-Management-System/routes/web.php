@@ -17,4 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', 'DoctorController@index');
+Route::get('/home', function () {
+  	//$blogs = App\Blog::take(3)->latest()->get();
+	//$blogs = App\Blog::latest()->paginate(5);
+	$blogs = App\Blog::orderBy('blog_id', 'desc')->paginate(5);
+
+    return view('home', [
+        'blogs' => $blogs
+    ]);
+});
+
+
+
+Route::get('/homey', 'DoctorController@index');

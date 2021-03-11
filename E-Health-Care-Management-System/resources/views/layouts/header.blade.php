@@ -1,5 +1,6 @@
 <div class="col-3 ml-auto text-right py-4 mx-5">
-<button class="button btn-outline-secondary">logout</button>	
+<button class="button btn-outline-secondary">login</button>		
+<button class="button btn-outline-secondary">register</button>	
 </div>
 <div class="navbar navbar-expand-sm bg-light navbar-light justify-content-center">
 	<div class="">
