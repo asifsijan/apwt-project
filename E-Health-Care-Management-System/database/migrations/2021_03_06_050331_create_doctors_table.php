@@ -16,6 +16,8 @@ class CreateDoctorsTable extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             //$table->id();
             $table->increments('doctor_id');
+            $table->integer('adpm_id')->unsigned();
+            $table->foreign('adpm_id')->references('id')->on('users');
             $table->string('status');
             //$table->string('xyz');
             $table->string('about');
@@ -25,6 +27,7 @@ class CreateDoctorsTable extends Migration
             $table->string('certificate');
             $table->integer('visit_fee');
             $table->timestamps();
+            
 
         });
     }

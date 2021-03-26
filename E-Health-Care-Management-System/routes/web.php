@@ -29,4 +29,8 @@ Route::get('/home', function () {
 
 
 
+Route::get('/register', 'DoctorController@index');
+Route::post('/register', 'DoctorController@store');
+
+
 Route::get('/homey', 'DoctorController@index');
