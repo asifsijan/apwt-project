@@ -51,10 +51,22 @@
 			</div>
 
 			<div class="form-group">
-				<label for="last_name">Last Name</label>
-				<input type="text" class="form-control" placeholder="" name="last_name">
+				<label for="gender">Gender</label>
+				<input type="text" class="form-control" placeholder="" name="gender">
 			</div>
 
+			<div class="form-group">
+				<label for="blood_type">blood type</label>
+				<input type="text" class="form-control" placeholder="" name="blood_type">
+			</div>
+			<div class="form-group">
+				<label for="nid">nid</label>
+				<input type="text" class="form-control" placeholder="" name="nid">
+			</div>
+			<div class="form-group">
+				<label for="contact">contact</label>
+				<input type="text" class="form-control" placeholder="" name="contact">
+			</div>
 
 
 
