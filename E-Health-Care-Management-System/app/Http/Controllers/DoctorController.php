@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Doctor;
 use App\User;
 use Validator;
-
+use Illuminate\Support\Facades\DB;
 
 class DoctorController extends Controller
 {
@@ -19,9 +19,20 @@ class DoctorController extends Controller
 
 
 
-	public function store(){
+	public function store(Request $request){
 
-			
+			$users = User::where('email', $request->email)->get();
+
+		    # check if email is more than 1
+		    if(sizeof($users) > 0){
+		        # tell user not to duplicate same email
+		        $msg = 'This user already signed up !';
+		        echo $msg;
+		       // return back();
+		    }
+
+		    else{
+		    				
 			$user = new User();
 			$file1 = request('image');  
 			$filename1 = time().".".$file1->getClientOriginalExtension();
@@ -60,9 +71,38 @@ class DoctorController extends Controller
 			return redirect('/home');
 
 
+		    }
+
+
 
 
 	}
+
+
+	    public function verify(Request $req){
+
+
+        $user = DB::table('users')
+                    ->where('password', $req->password)
+                    ->where('username', $req->username)
+                    ->get();
+
+
+        if($req->username == "" || $req->password == ""){
+           $req->session()->flash('msg', 'null username or password...');
+           return redirect('/login');
+
+        }elseif(count($user) > 0 ){
+
+
+            $req->session()->put('username', $req->username);
+            return redirect('/home');
+        }else{
+
+            $req->session()->flash('msg', 'Invalid username or password...');
+            return redirect('/login');
+        }
+    }
 
 
 
