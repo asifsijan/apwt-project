@@ -2,7 +2,7 @@
 <meta name="description" content="">
 <meta name="author" content="Scotch">
 
-<title>Super Cool Layouts</title>
+<title>doctor</title>
 
 <!-- load bootstrap from a cdn -->
 <link href="/css/app.css" rel="stylesheet">

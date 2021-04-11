@@ -4,7 +4,12 @@
     @include('layouts.head')
 </head>
 <body>
-    @include('layouts.header')
+
+	<div class="container">
+		
+    
+	</div>
+    @include('layouts.doctorHeader')
     @include('layouts.footer')
 </body>
 </html>

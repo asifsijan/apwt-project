@@ -32,5 +32,10 @@ Route::get('/home', function () {
 Route::get('/register', 'DoctorController@index');
 Route::post('/register', 'DoctorController@store');
 
+Route::get('/doctor/login', 'DoctorController@login');
+Route::post('/doctor/login', 'DoctorController@verify');
+Route::get('/doctor/home', 'DoctorController@home');
+Route::get('/doctor/logout', 'DoctorController@logout');
 
-Route::get('/homey', 'DoctorController@index');
+
+//Route::get('/homey', 'DoctorController@index');

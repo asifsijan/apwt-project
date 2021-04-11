@@ -1,1 +1,1 @@
-<div id="copyright text-right" class="container">© Copyright 2013 Scotchy Scotch Scotch</div>
+<div id="copyright text-right" class="container">© asif_sijan</div>

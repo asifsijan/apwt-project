@@ -44,7 +44,7 @@
 				<label for="image">upload profile Image</label>
 				<input type="file" class="form-control" placeholder="" name="image">
 			</div>
-			
+
 			<div class="form-group">
 				<label for="dob">Date of birth</label>
 				<input type="date" class="form-control" placeholder="" name="dob">
@@ -88,7 +88,7 @@
 			<div class="form-group">
 				<label for="about">About:</label>
 				<textarea class="form-control" rows="3" name="about"></textarea>
-				
+
 			</div>
 
 			<div class="form-group">
@@ -114,7 +114,7 @@
 			<div class="form-group">
 				<label for="visit_fee">visit fee</label>
 				<input type="number" class="form-control" placeholder="" name="visit_fee">
-			</div>			
+			</div>
 
 
 

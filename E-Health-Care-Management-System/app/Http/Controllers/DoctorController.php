@@ -21,18 +21,18 @@ class DoctorController extends Controller
 
 	public function store(Request $request){
 
-			$users = User::where('email', $request->email)->get();
+			$umail = User::where('email', $request->email)->get();
+			$uname = User::where('user_name',$request->user_name)->get();
 
-		    # check if email is more than 1
-		    if(sizeof($users) > 0){
-		        # tell user not to duplicate same email
-		        $msg = 'This user already signed up !';
+		    if(sizeof($umail) > 0 or sizeof($uname) > 0){
+
+		        $msg = 'username or email already exists';
 		        echo $msg;
 		       // return back();
 		    }
 
 		    else{
-		    				
+
 			$user = new User();
 			$file1 = request('image');  
 			$filename1 = time().".".$file1->getClientOriginalExtension();
@@ -42,7 +42,7 @@ class DoctorController extends Controller
 			$user->first_name = request('first_name');
 			$user->last_name = request('last_name');
 			$user->email = request('email');
-			$user->password = bcrypt(request('password'));
+			$user->password = request('password');
 			$user->image = $filename1;
 			$user->dob = request('dob');
 			$user->gender = request('gender');
@@ -79,30 +79,71 @@ class DoctorController extends Controller
 	}
 
 
-	    public function verify(Request $req){
 
 
-        $user = DB::table('users')
-                    ->where('password', $req->password)
-                    ->where('username', $req->username)
-                    ->get();
+
+		public function login(){
+
+		return view('doctor.login');
+	}
 
 
-        if($req->username == "" || $req->password == ""){
-           $req->session()->flash('msg', 'null username or password...');
-           return redirect('/login');
 
-        }elseif(count($user) > 0 ){
+	public function verify(Request $req){
 
 
-            $req->session()->put('username', $req->username);
-            return redirect('/home');
-        }else{
 
-            $req->session()->flash('msg', 'Invalid username or password...');
-            return redirect('/login');
-        }
-    }
+		$user = DB::table('users')
+		->where('password', $req->password)
+		->where('user_name', $req->name)
+		->get();
+
+
+		if($req->name == "" || $req->password == ""){
+			$req->session()->flash('msg', 'null name or password...');
+			return redirect('/login');
+
+		}elseif(count($user) > 0 ){
+
+			$req->session()->put('name', $req->name);
+			return redirect('/doctor/home');
+		}else{
+
+			$req->session()->flash('msg', 'Invalid name or password...');
+			return redirect('/doctor/login');
+		}
+	}
+
+
+
+
+	public function home(Request $req){
+		if($req->session()->has('name')){
+		
+			
+			return view('doctor.home');
+		}else{
+			$req->session()->flash('msg', 'invalid request...login first!');
+			return redirect('/doctor/login');
+		}
+		
+	}
+
+
+
+	public function logout(Request $req){
+
+		$req->session()->flush();
+		return redirect('/doctor/login');
+	}
+
+
+
+
+
+
+
+
 
 
 
