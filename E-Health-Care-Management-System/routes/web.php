@@ -37,5 +37,9 @@ Route::post('/doctor/login', 'DoctorController@verify');
 Route::get('/doctor/home', 'DoctorController@home');
 Route::get('/doctor/logout', 'DoctorController@logout');
 
+Route::get('/doctor/blogs', 'DoctorController@addBlog');
+Route::post('/doctor/blogs', 'DoctorController@storeBlog');
+
+
 
 //Route::get('/homey', 'DoctorController@index');

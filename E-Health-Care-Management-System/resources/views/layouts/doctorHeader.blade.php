@@ -19,7 +19,7 @@
 				<a class="nav-link" href="/doctor/home"><h4>Home</h4></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/doctor/car"><h4>Post Blogs</h4></a>
+				<a class="nav-link" href="/doctor/blogs"><h4>Post Blogs</h4></a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#"><h4>View Requests</h4></a>

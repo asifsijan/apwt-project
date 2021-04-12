@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Doctor;
 use App\User;
+use App\Blog;
+//use Session;
+
 use Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class DoctorController extends Controller
 {
@@ -106,6 +110,7 @@ class DoctorController extends Controller
 		}elseif(count($user) > 0 ){
 
 			$req->session()->put('name', $req->name);
+			$request->session()->save(); 
 			return redirect('/doctor/home');
 		}else{
 
@@ -137,6 +142,56 @@ class DoctorController extends Controller
 		return redirect('/doctor/login');
 	}
 
+
+
+	public function addBlog(Request $req){
+		if($req->session()->has('name')){
+			return view('doctor.blogs');;
+		}else{
+			$req->session()->flash('msg', 'invalid request...login first!');
+			return redirect('/doctor/login');
+		}
+		
+	}
+
+	public function storeBlog(Request $request){
+
+
+
+	
+
+			$user = new Blog();
+
+
+			$user->blog_name = request('blog_name');
+			$user->blog_details = request('blog_details');
+
+//			$name = Session::get('name');
+			// $d_id = User::select('id')
+   //                         ->where('user_name', '=', 'asifsijan')
+   //                         ->get(); 
+
+
+
+			//if($request->session()->has('name'))
+//				$name = $request->session()->get('name');
+
+			$d_id = DB::table('users')->where('user_name', 'asifsijan')->value('id');
+
+
+			$user->doctor_id = $d_id;
+
+			$user->save();
+
+			return redirect('/doctor/home');
+
+
+		
+
+
+
+
+	}
 
 
 
