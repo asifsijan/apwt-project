@@ -110,7 +110,7 @@ class DoctorController extends Controller
 		}elseif(count($user) > 0 ){
 
 			$req->session()->put('name', $req->name);
-			$request->session()->save(); 
+			$req->session()->save(); 
 			return redirect('/doctor/home');
 		}else{
 
@@ -153,7 +153,7 @@ class DoctorController extends Controller
 
 	public function addBlog(Request $req){
 		if($req->session()->has('name')){
-			return view('doctor.blogs');;
+			return view('doctor.blogs');
 		}else{
 			$req->session()->flash('msg', 'invalid request...login first!');
 			return redirect('/doctor/login');
@@ -161,7 +161,7 @@ class DoctorController extends Controller
 		
 	}
 
-	public function storeBlog(Request $request){
+	public function storeBlog(Request $req){
 
 
 
@@ -173,18 +173,20 @@ class DoctorController extends Controller
 			$user->blog_name = request('blog_name');
 			$user->blog_details = request('blog_details');
 
-//			$name = Session::get('name');
 			// $d_id = User::select('id')
    //                         ->where('user_name', '=', 'asifsijan')
    //                         ->get(); 
 
 
+//			$name = Session::get('name');
 
-			//if($request->session()->has('name'))
-//				$name = $request->session()->get('name');
+			if($req->session()->has('name')){
+				$name = $req->session()->get('name');
 
-			$d_id = DB::table('users')->where('user_name', 'asifsijan')->value('id');
+			}
 
+			echo "$name";
+			$d_id = DB::table('users')->where('user_name', $name)->value('id');
 
 			$user->doctor_id = $d_id;
 
