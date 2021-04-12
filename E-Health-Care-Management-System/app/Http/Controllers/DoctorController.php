@@ -124,9 +124,16 @@ class DoctorController extends Controller
 
 	public function home(Request $req){
 		if($req->session()->has('name')){
-		
+			// $blog = \App\Blog::all();
 			
-			return view('doctor.home');
+			// return view('doctor.home');
+		$blogs = Blog::orderBy('blog_id', 'desc')->paginate(5);
+
+		    return view('doctor.home', [
+		        'blogs' => $blogs
+		    ]);
+
+
 		}else{
 			$req->session()->flash('msg', 'invalid request...login first!');
 			return redirect('/doctor/login');
