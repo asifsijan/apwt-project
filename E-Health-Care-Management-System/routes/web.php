@@ -29,8 +29,8 @@ Route::get('/home', function () {
 
 
 
-Route::get('/register', 'DoctorController@index');
-Route::post('/register', 'DoctorController@store');
+Route::get('/doctor/register', 'DoctorController@index');
+Route::post('/doctor/register', 'DoctorController@store');
 
 Route::get('/doctor/login', 'DoctorController@login');
 Route::post('/doctor/login', 'DoctorController@verify');
