@@ -1,6 +1,6 @@
 	<div class="col-3 ml-auto text-right py-4 mx-5">
 	
-<button class="button btn-outline-secondary"><a href="/doctor/logout">Logout</a></button>	
+<button class="button btn-outline-secondary"><a href="/home">Logout</a></button>	
 </div>
 
 
@@ -22,7 +22,7 @@
 				<a class="nav-link" href="/doctor/blogs"><h4>Post Blogs</h4></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#"><h4>View Requests</h4></a>
+				<a class="nav-link" href="/doctor/application"><h4>View Requests</h4></a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#"><h4>Edit Infos</h4></a>

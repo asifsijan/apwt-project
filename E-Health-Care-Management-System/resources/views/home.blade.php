@@ -6,7 +6,12 @@
 <body>
 	@include('layouts.header')
 
+
 	<div class="container">
+		<div class="d-flex justify-content-center">
+		<p style="">Latest Blogs</p>
+
+	</div>
 		@foreach ($blogs as $blog)
 		<div class="jumbotron">
 

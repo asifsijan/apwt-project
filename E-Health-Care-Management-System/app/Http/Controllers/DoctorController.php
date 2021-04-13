@@ -5,11 +5,16 @@ use Illuminate\Http\Request;
 use App\Doctor;
 use App\User;
 use App\Blog;
+use App\Application;
 //use Session;
 
 use Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+
+
+
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DoctorController extends Controller
 {
@@ -73,6 +78,8 @@ class DoctorController extends Controller
 			$doctor->adpm_id = $adpm_id;
 			$doctor->save();
 			return redirect('/home');
+
+
 
 
 		    }
@@ -185,12 +192,14 @@ class DoctorController extends Controller
 
 			}
 
-			echo "$name";
+			//echo "$name";
 			$d_id = DB::table('users')->where('user_name', $name)->value('id');
 
 			$user->doctor_id = $d_id;
 
 			$user->save();
+
+			//$slug = SlugService::createSlug(Blog::class,'slug',$request->blog_name);
 
 			return redirect('/doctor/home');
 
@@ -207,9 +216,39 @@ class DoctorController extends Controller
 
 
 
+	public function showBlog($blog_id){
+		//dd($blog_id);
+		//return view(doctor.blogShow)->with('blog', Blog::where('slug', $slug)->first());
+		$blog = Blog::find($blog_id);
+		return view('doctor.blogShow', ['blog' => $blog]);
+	} 
+
+	public function showApp(Request $req){
+
+		if($req->session()->has('name')){
+				$name = $req->session()->get('name');
 
 
+			//echo "$name";
+			$d_id = DB::table('users')->where('user_name', $name)->value('id');
 
+
+		$applications = Application::select('app_id','patient_id', 'title', 'details','created_at')
+                           ->where('doctor_id', '=', $d_id)
+                           ->get();
+
+
+        return view('doctor.application', ['applications' => $applications]);
+
+			}
+	}
+
+
+	public function showSApp($app_id){
+		
+		$app = App::find($app_id);
+		return view('doctor.appSShow', ['app' => $app]);
+	} 
 
 
 

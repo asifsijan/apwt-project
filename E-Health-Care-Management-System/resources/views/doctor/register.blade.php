@@ -91,10 +91,7 @@
 
 			</div>
 
-			<div class="form-group">
-				<label for="category">category</label>
-				<input type="text" class="form-control" placeholder="" name="category" required>
-			</div>
+	
 
 			<div class="form-group">
 				<label for="degree">degree</label>

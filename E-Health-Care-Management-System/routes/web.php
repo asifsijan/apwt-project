@@ -39,6 +39,12 @@ Route::get('/doctor/logout', 'DoctorController@logout');
 
 Route::get('/doctor/blogs', 'DoctorController@addBlog');
 Route::post('/doctor/blogs', 'DoctorController@storeBlog');
+Route::get('/doctor/blogs/{blog_id}', 'DoctorController@showBlog');
+
+// Route::get('/doctor/blogs', 'DoctorController@addBlog');
+// Route::post('/doctor/blogs', 'DoctorController@storeBlog');
+Route::get('/doctor/application', 'DoctorController@showApp');
+Route::get('/doctor/blogs/{app_id}', 'DoctorController@showSApp');
 
 
 

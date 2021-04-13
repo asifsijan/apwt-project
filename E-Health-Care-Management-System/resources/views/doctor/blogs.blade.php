@@ -25,7 +25,7 @@
 
 
 
-			<button type="submit" class="btn btn-primary">Add Car</button>
+			<button type="submit" class="btn btn-primary">Add Blog</button>
 		</form>
 		{{session('msg')}}
 	</div>

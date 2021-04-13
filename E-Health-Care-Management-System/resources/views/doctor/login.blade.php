@@ -4,24 +4,22 @@
 	@include('layouts.head')
 </head>
 <body>
+	@include('layouts.header')
 
-	<div class="col-3 ml-auto text-right py-4 mx-5">
-		
-		<button class="button btn-outline-secondary"><a href="/doctor/register">Register</a></button>	
-	</div>
+
 	<div class="container">
 		<form method="POST" action="" enctype="multipart/form-data">
 			@csrf
 
 
 
-			<div class="form-group">
+			<div class="form-group" style="text-align:center;">
 				<label for="name">User Name</label>
 				<input type="text" class="form-control" placeholder="" name="name" required>
 			</div>
 
 
-			<div class="form-group">
+			<div class="form-group" style="text-align:center;">
 				<label for="password">password</label>
 				<input type="password" class="form-control" placeholder="" name="password" required>
 			</div>
