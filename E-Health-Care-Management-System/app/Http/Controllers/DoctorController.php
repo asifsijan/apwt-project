@@ -10,7 +10,6 @@ class DoctorController extends Controller
 
 
     public function index(){
-	echo "bokachoda shohan";
-	}
+		}
 }
 
