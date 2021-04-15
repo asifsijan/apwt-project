@@ -20,3 +20,13 @@ Route::get('/', function () {
 //Route::get('/home', 'DoctorContr');oller@index
 
 
+Route::get('/home', function () {
+  	//$blogs = App\Blog::take(3)->latest()->get();
+	//$blogs = App\Blog::latest()->paginate(5);
+	$blogs = App\Blog::orderBy('blog_id', 'desc')->paginate(5);
+
+    return view('home', [
+        'blogs' => $blogs
+    ]);
+});
+
