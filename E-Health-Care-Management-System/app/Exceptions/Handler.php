@@ -22,8 +22,8 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontFlash = [
-        'password',
-        'password_confirmation',
+        // 'password',
+        // 'password_confirmation',
     ];
 
     /**
@@ -32,7 +32,7 @@ class Handler extends ExceptionHandler
      * @param  \Throwable  $exception
      * @return void
      *
-     * @throws \Exception
+     * @throws \Throwable
      */
     public function report(Throwable $exception)
     {

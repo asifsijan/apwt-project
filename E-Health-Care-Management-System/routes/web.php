@@ -14,17 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing-page');
 });
 
-//Route::get('/home', 'DoctorController@index');
-Route::get('/home', function () {
-  	//$blogs = App\Blog::take(3)->latest()->get();
-	//$blogs = App\Blog::latest()->paginate(5);
-	$blogs = App\Blog::orderBy('blog_id', 'desc')->paginate(5);
+Route::get('/patient/register', 'PatientController@create');
+Route::post('/patient/register', 'PatientController@store');
 
-    return view('home', [
-        'blogs' => $blogs
-    ]);
-});
+Route::get('/login', 'LoginController@index');
+Route::post('/login', 'LoginController@verify');
 
+Route::get('/logout', 'LoginController@logout');
+
+Route::get('/patient/dashboard', 'PatientController@index');
+Route::post('/patient/dashboard', 'DoctorController@show');
+
+Route::get('/patient/appointment/{doctor_id}', 'AppointmentController@create');
+Route::post('/patient/appointment/{doctor_id}', 'AppointmentController@store');
+
+Route::get('/patient/appointment-history', 'AppointmentController@index');
