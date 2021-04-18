@@ -33,6 +33,7 @@ Route::get('/', function () {
     
 });
 
+
 Route::get('/register/msps_register', 'RegisterController@view_reg_page')->name('register.msps_register');
 Route::post('/register/msps_register', 'RegisterController@insert_msps');
 
@@ -103,3 +104,16 @@ Route::post('/add/edit_for_release', 'AddController@edit_for_release')->name('ed
 
 
 Route::get('/logout', 'logoutController@logout')->name('logout');
+
+//Route::get('/home', 'DoctorController@index');
+Route::get('/home', function () {
+  	//$blogs = App\Blog::take(3)->latest()->get();
+	//$blogs = App\Blog::latest()->paginate(5);
+	$blogs = App\Blog::orderBy('blog_id', 'desc')->paginate(5);
+
+    return view('home', [
+        'blogs' => $blogs
+    ]);
+});
+
+

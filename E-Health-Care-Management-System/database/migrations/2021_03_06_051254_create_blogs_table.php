@@ -17,7 +17,7 @@ class CreateBlogsTable extends Migration
             $table->increments('blog_id');
             $table->integer('doctor_id');
             $table->string('blog_name');
-            $table->string('blog_details');
+            $table->text('blog_details');
             $table->timestamps();
         });
     }

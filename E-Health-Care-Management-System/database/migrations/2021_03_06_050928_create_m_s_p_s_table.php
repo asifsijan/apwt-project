@@ -14,8 +14,14 @@ class CreateMSPSTable extends Migration
     public function up()
     {
         Schema::create('m_s_p_s', function (Blueprint $table) {
+
             $table->increments('msps_id');
             $table->integer('user_id');
+
+            $table->increments('m_s_p_s_id');
+            $table->integer('adpm_id')->unsigned();
+            $table->foreign('adpm_id')->references('id')->on('users');
+
             $table->string('status');
         });
     }
