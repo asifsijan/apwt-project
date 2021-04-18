@@ -106,6 +106,8 @@ Route::post('/add/edit_for_release', 'AddController@edit_for_release')->name('ed
 Route::get('/logout', 'logoutController@logout')->name('logout');
 
 //Route::get('/home', 'DoctorController@index');
+
+
 Route::get('/home', function () {
   	//$blogs = App\Blog::take(3)->latest()->get();
 	//$blogs = App\Blog::latest()->paginate(5);
@@ -116,4 +118,28 @@ Route::get('/home', function () {
     ]);
 });
 
+
+
+
+
+Route::get('/doctor/register', 'DoctorController@index');
+Route::post('/doctor/register', 'DoctorController@store');
+
+Route::get('/doctor/login', 'DoctorController@login');
+Route::post('/doctor/login', 'DoctorController@verify');
+Route::get('/doctor/home', 'DoctorController@home');
+Route::get('/doctor/logout', 'DoctorController@logout');
+
+Route::get('/doctor/blogs', 'DoctorController@addBlog');
+Route::post('/doctor/blogs', 'DoctorController@storeBlog');
+Route::get('/doctor/blogs/{blog_id}', 'DoctorController@showBlog');
+
+// Route::get('/doctor/blogs', 'DoctorController@addBlog');
+// Route::post('/doctor/blogs', 'DoctorController@storeBlog');
+Route::get('/doctor/application', 'DoctorController@showApp');
+Route::get('/doctor/blogs/{app_id}', 'DoctorController@showSApp');
+
+
+
+//Route::get('/homey', 'DoctorController@index');
 
