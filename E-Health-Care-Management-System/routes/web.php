@@ -17,12 +17,18 @@ use Illuminate\Support\Facades\Cookie;
 */
 
 Route::get('/', function () {
-<<<<<<< HEAD
+
+    return view('landing-page');
+});
+
+Route::get('/patient/register', 'PatientController@create');
+Route::post('/patient/register', 'PatientController@store');
+
 
 
 	  if(Cookie::get('username') !== null){
 
-                    
+
          return redirect('/dashboard/msps_dashboard');
 
          }else{
@@ -30,8 +36,8 @@ Route::get('/', function () {
             return view('index');
          }
 
-    
-    
+
+
 });
 
 
@@ -113,13 +119,7 @@ Route::get('/home', function () {
   	//$blogs = App\Blog::take(3)->latest()->get();
 	//$blogs = App\Blog::latest()->paginate(5);
 	$blogs = App\Blog::orderBy('blog_id', 'desc')->paginate(5);
-=======
-    return view('landing-page');
-});
 
-Route::get('/patient/register', 'PatientController@create');
-Route::post('/patient/register', 'PatientController@store');
->>>>>>> saifullah
 
 Route::get('/login', 'LoginController@index');
 Route::post('/login', 'LoginController@verify');
@@ -132,7 +132,9 @@ Route::post('/patient/dashboard', 'DoctorController@show');
 Route::get('/patient/appointment/{doctor_id}', 'AppointmentController@create');
 Route::post('/patient/appointment/{doctor_id}', 'AppointmentController@store');
 
-<<<<<<< HEAD
+
+Route::get('/patient/appointment-history', 'AppointmentController@index');
+
 
 
 
@@ -149,15 +151,11 @@ Route::get('/doctor/blogs', 'DoctorController@addBlog');
 Route::post('/doctor/blogs', 'DoctorController@storeBlog');
 Route::get('/doctor/blogs/{blog_id}', 'DoctorController@showBlog');
 
-// Route::get('/doctor/blogs', 'DoctorController@addBlog');
-// Route::post('/doctor/blogs', 'DoctorController@storeBlog');
+Route::get('/doctor/blogs', 'DoctorController@addBlog');
+Route::post('/doctor/blogs', 'DoctorController@storeBlog');
 Route::get('/doctor/application', 'DoctorController@showApp');
 Route::get('/doctor/blogs/{app_id}', 'DoctorController@showSApp');
 
 
 
 //Route::get('/homey', 'DoctorController@index');
-
-=======
-Route::get('/patient/appointment-history', 'AppointmentController@index');
->>>>>>> saifullah
