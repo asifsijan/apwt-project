@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Doctor;
 use App\User;
@@ -16,9 +17,33 @@ use Illuminate\Support\Facades\Session;
 
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
+
+use App\Doctor;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+
 class DoctorController extends Controller
 {
-    //
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
 
 	public function index(){
@@ -43,7 +68,7 @@ class DoctorController extends Controller
 		    else{
 
 			$user = new User();
-			$file1 = request('image');  
+			$file1 = request('image');
 			$filename1 = time().".".$file1->getClientOriginalExtension();
 			$file1->move('upload', $filename1);
 
@@ -64,7 +89,7 @@ class DoctorController extends Controller
 			$adpm_id = User::latest()->first()->id;
 
 			$doctor = new Doctor();
-			$file = request('certificate');  
+			$file = request('certificate');
 			$filename = time().".".$file->getClientOriginalExtension();
 			$file->move('upload', $filename);
 
@@ -117,7 +142,7 @@ class DoctorController extends Controller
 		}elseif(count($user) > 0 ){
 
 			$req->session()->put('name', $req->name);
-			$req->session()->save(); 
+			$req->session()->save();
 			return redirect('/doctor/home');
 		}else{
 
@@ -132,7 +157,7 @@ class DoctorController extends Controller
 	public function home(Request $req){
 		if($req->session()->has('name')){
 			// $blog = \App\Blog::all();
-			
+
 			// return view('doctor.home');
 		$blogs = Blog::orderBy('blog_id', 'desc')->paginate(5);
 
@@ -145,7 +170,7 @@ class DoctorController extends Controller
 			$req->session()->flash('msg', 'invalid request...login first!');
 			return redirect('/doctor/login');
 		}
-		
+
 	}
 
 
@@ -165,14 +190,14 @@ class DoctorController extends Controller
 			$req->session()->flash('msg', 'invalid request...login first!');
 			return redirect('/doctor/login');
 		}
-		
+
 	}
 
 	public function storeBlog(Request $req){
 
 
 
-	
+
 
 			$user = new Blog();
 
@@ -182,7 +207,7 @@ class DoctorController extends Controller
 
 			// $d_id = User::select('id')
    //                         ->where('user_name', '=', 'asifsijan')
-   //                         ->get(); 
+   //                         ->get();
 
 
 //			$name = Session::get('name');
@@ -204,7 +229,7 @@ class DoctorController extends Controller
 			return redirect('/doctor/home');
 
 
-		
+
 
 
 
@@ -221,7 +246,7 @@ class DoctorController extends Controller
 		//return view(doctor.blogShow)->with('blog', Blog::where('slug', $slug)->first());
 		$blog = Blog::find($blog_id);
 		return view('doctor.blogShow', ['blog' => $blog]);
-	} 
+	}
 
 	public function showApp(Request $req){
 
@@ -245,13 +270,79 @@ class DoctorController extends Controller
 
 
 	public function showSApp($app_id){
-		
+
 		$app = App::find($app_id);
 		return view('doctor.appSShow', ['app' => $app]);
-	} 
+	}
 
 
 
 
 	}
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Doctor  $doctor
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request)
+    {
+        //
+        $request->validate([
+            'category' => 'required'
+        ]);
+
+        $doctors = DB::table('doctors')
+		->where('category', $request->category)
+		->get();
+
+        return view('patient.dashboard', ['doctors' => $doctors]);
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Doctor  $doctor
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Doctor $doctor)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Doctor  $doctor
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Doctor $doctor)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Doctor  $doctor
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Doctor $doctor)
+    {
+        //
+    }
+}

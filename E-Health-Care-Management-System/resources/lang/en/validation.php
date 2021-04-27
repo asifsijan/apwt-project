@@ -133,6 +133,10 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        'phone' => [
+            'digits_between' => 'Only 11 digits allowed',
+        ],
     ],
 
     /*

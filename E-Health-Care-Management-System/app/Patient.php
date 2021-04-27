@@ -6,7 +6,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 //use Cviebrock\EloquentSluggable\Sluggable;
 
-class Blog extends Model
+class Patient extends Model
 {
     
 	//use Sluggable;

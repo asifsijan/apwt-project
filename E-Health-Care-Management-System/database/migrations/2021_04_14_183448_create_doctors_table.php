@@ -14,21 +14,11 @@ class CreateDoctorsTable extends Migration
     public function up()
     {
         Schema::create('doctors', function (Blueprint $table) {
-            //$table->id();
-            $table->increments('doctor_id');
-            $table->integer('adpm_id')->unsigned();
-            $table->foreign('adpm_id')->references('id')->on('users');
-            $table->string('status');
-            //$table->string('xyz');
-            $table->string('about');
+            $table->id();
+            $table->string('name');
             $table->string('category');
             $table->string('degree');
-            $table->integer('bmdc_id');
-            $table->string('certificate');
-            $table->integer('visit_fee');
             $table->timestamps();
-            
-
         });
     }
 

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Cookie;
 */
 
 Route::get('/', function () {
+<<<<<<< HEAD
 
 
 	  if(Cookie::get('username') !== null){
@@ -112,12 +113,26 @@ Route::get('/home', function () {
   	//$blogs = App\Blog::take(3)->latest()->get();
 	//$blogs = App\Blog::latest()->paginate(5);
 	$blogs = App\Blog::orderBy('blog_id', 'desc')->paginate(5);
-
-    return view('home', [
-        'blogs' => $blogs
-    ]);
+=======
+    return view('landing-page');
 });
 
+Route::get('/patient/register', 'PatientController@create');
+Route::post('/patient/register', 'PatientController@store');
+>>>>>>> saifullah
+
+Route::get('/login', 'LoginController@index');
+Route::post('/login', 'LoginController@verify');
+
+Route::get('/logout', 'LoginController@logout');
+
+Route::get('/patient/dashboard', 'PatientController@index');
+Route::post('/patient/dashboard', 'DoctorController@show');
+
+Route::get('/patient/appointment/{doctor_id}', 'AppointmentController@create');
+Route::post('/patient/appointment/{doctor_id}', 'AppointmentController@store');
+
+<<<<<<< HEAD
 
 
 
@@ -143,3 +158,6 @@ Route::get('/doctor/blogs/{app_id}', 'DoctorController@showSApp');
 
 //Route::get('/homey', 'DoctorController@index');
 
+=======
+Route::get('/patient/appointment-history', 'AppointmentController@index');
+>>>>>>> saifullah

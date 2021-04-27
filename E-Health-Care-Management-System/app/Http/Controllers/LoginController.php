@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 use App\All_User;
 use Validator;
 use App\Http\Requests\login_request;
@@ -21,7 +22,7 @@ class LoginController extends Controller
 
       $valid_user = All_User::where('user_name', $request->username)
                     ->where('password', $request->password)
-                    ->get(); 
+                    ->get();
 
        if(count($valid_user) > 0){
 
@@ -44,7 +45,7 @@ class LoginController extends Controller
 
        	    $request->session()->flash('error_msg', '**Wrong Username Or password');
             return redirect('/login/login_page');
-       } 
+       }
 
     }
 
@@ -62,6 +63,52 @@ class LoginController extends Controller
 
 
 
-    
+
+
+use Illuminate\Support\Facades\DB;
+class LoginController extends Controller
+{
+
+    public function index()
+    {
+
+        return view('login');
+    }
+
+    public function verify(Request $request)
+    {
+
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ]);
+
+        $patient = DB::table('patients')
+		->where('email', $request->email)
+		->where('password', $request->password)
+		->get();
+
+        if(count($patient) > 0 )
+        {
+			$request->session()->put('name', $patient[0]->name);
+            $request->session()->put('patient_id', $patient[0]->id);
+			$request->session()->save();
+			return redirect('/patient/dashboard');
+            dd($patient);
+		}
+        else
+        {
+			$request->session()->flash('errorMessage', 'Invalid Email or Password!');
+			return redirect('/login');
+		}
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+		return redirect('/login');
+    }
+
+
 
 }
